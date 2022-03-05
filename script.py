@@ -40,7 +40,7 @@ while True:
 
         length = hypot(x2-x1,y2-y1)
 
-        vol = mp.interp(length,[15,220],[volMin,volMax])
+        vol = np.interp(length,[15,220],[volMin,volMax])
         print(vol,length)
         volume.SetMasterVolumeLevel(vol,None)
 
