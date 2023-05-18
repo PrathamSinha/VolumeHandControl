@@ -7,8 +7,11 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 import numpy as np
 
 cap = cv2.VideoCapture(0)
+
 mpHands = mp.solutions.hands
+
 hands = mpHands.Hands()
+
 mpDraw = mp.solutions.drawing_utils 
 
 device = AudioUtilities.GetSpeakers()
@@ -16,6 +19,7 @@ interface = device.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
 volume = cast(interface, POINTER(IAudioEndpointVolume))
 
 volMin,volMax = volume.GetVolumeRange()[:2]
+
 while True:
     success,img = cap.read()
     imgRGB = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
@@ -32,6 +36,7 @@ while True:
 
     if lmList != []:
         x1,y1 = lmList[4][1],lmList[4][2]
+        
         x2,y2 = lmList[8][1],lmList[8][2]
 
         cv2.circle(img,(x1,y1),4,(255,0,0),cv2.FILLED)
